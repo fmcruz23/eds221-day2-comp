@@ -1,0 +1,108 @@
+---
+title: "Making and Indexing data in R"
+author: "Felicia Cruz"
+date: "8/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Make some vectors and check them out
+
+```{r}
+dogs <- c("waffle", "banjo", TRUE, "teddy", 40, 5L, "khora")
+
+# check the class
+# character is the most flexible data type so everything will be assigned to the character class 
+```
+
+
+```{r}
+dog_age <- c(1.4, 5, 6.3, 12, 7)
+class(dog_age)
+typeof(dog_age)
+
+dog_miles <- c(4L, 5L, 6L, 4L, 2L)
+class(dog_miles)
+typeof(dog_miles)
+
+is.character(dog_miles) # asks a question
+is.character(dogs)
+```
+
+```{r}
+dog_food <- c(teddy = "purina", 
+              waffle = "alpo",
+              khora = "fancy feast",
+              banjo = "blue diamond")
+dog_food
+
+waffle_food <- dog_food[2]
+dog_food["khora"]
+
+waffle_food
+```
+
+```{r}
+cars <- c("nissan", "ford", "honda", "chevy", "toyota", "dodge", "buick", "kia")
+
+cars[2:5] # accesses a sequence 
+
+i <- 3
+cars[i]
+
+i <- c(1, 5, 7)
+cars[i]
+
+# vectors are mutable
+
+cars[3] <- "TESLA"
+cars
+```
+
+## Lists in R 
+
+```{r}
+# lists can have multiple classes
+
+urchins <- list("blue", 
+                c(2, 3, 4), 
+                seq(from=0, to=50, by=0.5), 
+                1200L)
+urchins
+
+urchins[[1]] # returns only the contents of that specific element --> almost always want to use this
+urchins[1] # returns a LIST with the single element, which is "blue" 
+
+```
+
+```{r}
+tacos <- list(topping = c("onion", "cheese", "guac"), 
+              filling = c("chicken", "beef", "veggie"), 
+              price = c(6.75, 7, 8.25))
+
+tacos
+
+taco_price <- tacos[[3]]
+taco_price
+
+tacos$filling # $ does the exact same thing as [[]]
+```
+
+## Data frames
+
+```{r}
+fruit <- data.frame(type = c("apple", "banana", "peach"),
+                    mass = c(130, 195, 150))
+fruit
+
+class(fruit$mass)
+
+fruit$type
+fruit[, 1]
+```
+
